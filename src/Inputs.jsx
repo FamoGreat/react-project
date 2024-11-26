@@ -4,15 +4,18 @@ export default function Inputs({
   handleEmail,
   email,
   handlePassword,
-  password,
+  pswd,
   handlefirstName,
   firstName,
   handleVerifyPswd,
-  confirmPassword,
+  confirmPswd,
   addInputs,
 }) {
   return (
-    <form className="flex flex-col gap-2" onSubmit={(e) => addInputs(e)}>
+    <form
+      className="flex flex-col gap-4  w-4/5 border-bgfinwave"
+      onSubmit={(e) => addInputs(e)}
+    >
       <label className="input w-full input-ghost input-bordered border-2 border-bgfinwave flex items-center gap-2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +69,7 @@ export default function Inputs({
         <input
           type="password"
           className="grow"
-          value={password}
+          value={pswd}
           placeholder="password"
           onChange={(e) => handlePassword(e.target.value)}
         />
@@ -88,14 +91,14 @@ export default function Inputs({
         <input
           type="password"
           className="grow"
-          value={confirmPassword}
+          value={confirmPswd}
           placeholder="password"
           onChange={(e) => handleVerifyPswd(e.target.value)}
         />
       </label>
 
       <button
-        className="btn btn-block bg-bgfinwave text-textfinwave  hover:text-bgfinwave"
+        className="btn btn-block bg-bgfinwave text-warning  hover:btn-ghost"
         type="submit"
       >
         Create Account

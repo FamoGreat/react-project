@@ -1,0 +1,4 @@
+:global(.active) {
+  border-color: #ffbe00;
+  border-width: 2px;
+}

@@ -1,21 +1,39 @@
+import { NavLink } from "react-router";
+import styles from "./Header.module.css";
+
 export default function Header() {
   return (
-    <div className="navbar bg-ghost text-bgfinwave border-b-2 border-bgfinwave fixed top-1 left-0">
+    <div className="navbar z-10 bg-bgfinwave text-warning border-b-2 border-bgfinwave fixed top-0 left-0">
       <div className="flex-1">
         <a className="btn btn-ghost text-xl">One-Click</a>
       </div>
 
-      <div className="flex-none mr-4">
-        <div>
-          <a className="btn btn-ghost text-md">LogIn</a>
-        </div>
-
-        <div>
-          <a className="btn btn-ghost text-md">LogOut</a>
-        </div>
-
+      <ul className="flex-none mr-4 ">
+        <li>
+          <NavLink to={"/"} className={`btn btn-ghost ${styles.li}  text-md  `}>
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to={"/demo"}
+            className={`btn btn-ghost ${styles.li}  text-md  `}
+          >
+            Login
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to={"/signup"} className="btn btn-ghost text-md ">
+            Signup
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to={"/users"} className="btn btn-ghost text-md ">
+            users
+          </NavLink>
+        </li>
         <Night />
-      </div>
+      </ul>
     </div>
   );
 }

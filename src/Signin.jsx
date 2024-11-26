@@ -1,13 +1,17 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import axios from "axios";
-const sigInUrl = "http://174.138.186.155:700/api/Account/login";
+import { useAxiosInstance } from "./api/axiosInstance";
+import { useAuth } from "./context/AuthContext";
+const sigInUrl = "/Account/login";
 
-export default function Signin({ setErrors, setResult }) {
-  const [email, setEmail] = useState("sa@gmail.com");
-  const [password, setPassword] = useState("Hassany@2024");
+export default function Signin() {
+  const [email, setEmail] = useState("hassan@gmail.com.com");
+  const [password, setPassword] = useState("Hassan@2024");
   const [formData, setFormData] = useState({});
   const [submit, setSubmit] = useState(true);
+  const [errors, setErrors] = useState([]);
+  const { login } = useAuth();
+  const axiosInstance = useAxiosInstance();
 
   function handleEmail(value) {
     setEmail(() => value);
@@ -32,17 +36,16 @@ export default function Signin({ setErrors, setResult }) {
     function () {
       async function fetchData() {
         try {
-          const { data } = await axios.post(sigInUrl, formData, {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
+          const { data } = await axiosInstance.post(sigInUrl, formData);
 
           const { isSucceed, errorMessages, result } = data;
 
           if (isSucceed) {
-            setResult(result);
+            console.log(result);
 
+            login(result.userName, result.token); // Store in memory
+
+            console.log(result.token);
             console.log("success");
             setErrors([]); // Clear any previous errors
           } else {
@@ -62,7 +65,7 @@ export default function Signin({ setErrors, setResult }) {
       }
       fetchData();
     },
-    [submit, setErrors, setResult, formData]
+    [submit, formData]
   );
 
   return (

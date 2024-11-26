@@ -6,7 +6,6 @@ import axios from "axios";
 import Inputs from "./Inputs";
 import SignIn from "./Signin";
 import { Fragment } from "react";
-import Header from "./Header";
 
 const url = "http://174.138.186.155:700/api/Account/register";
 
@@ -72,6 +71,7 @@ export default function Body() {
           if (isSucceed) {
             setResult(result);
             console.log("success");
+            console.log(result);
             setErrors([]); // Clear any previous errors
           } else {
             setErrors(errorMessages);
